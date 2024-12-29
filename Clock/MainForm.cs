@@ -49,6 +49,10 @@ namespace Clock
 			{
 				labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
 			}
+			notifyIcon.Text = 
+				$"{DateTime.Now.ToString("hh:mm tt")}\n" +
+				$"{DateTime.Now.ToString("yyyy.MM.dd")}\n" +
+				$"{DateTime.Now.DayOfWeek}";
 		}
 
 		private void buttonHideControls_Click(object sender, EventArgs e)
@@ -59,6 +63,11 @@ namespace Clock
 		private void labelTime_DoubleClick(object sender, EventArgs e)
 		{
 			SetVisibility(true);
+		}
+
+		private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+		{
+
 		}
 	}
 }
