@@ -47,6 +47,7 @@
 			this.labelTime.TabIndex = 0;
 			this.labelTime.Text = "Time";
 			this.labelTime.UseWaitCursor = true;
+			this.labelTime.DoubleClick += new System.EventHandler(this.labelTime_DoubleClick);
 			// 
 			// timer
 			// 
@@ -63,7 +64,6 @@
 			this.cbShowDate.TabIndex = 1;
 			this.cbShowDate.Text = "Show date";
 			this.cbShowDate.UseVisualStyleBackColor = true;
-			this.cbShowDate.CheckedChanged += new System.EventHandler(this.cbShowDate_CheckedChanged);
 			// 
 			// checkBoxShowWeekDay
 			// 
@@ -91,13 +91,14 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(284, 411);
 			this.Controls.Add(this.buttonHideControls);
 			this.Controls.Add(this.checkBoxShowWeekDay);
 			this.Controls.Add(this.cbShowDate);
 			this.Controls.Add(this.labelTime);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Calc VPD_311";
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.ResumeLayout(false);
