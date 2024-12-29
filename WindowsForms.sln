@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clock", "Clock\Clock.csproj", "{12AD4774-A065-493F-8E2B-3A66E30AF1C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Calc|x64 = Calc|x64
+		Calc|x86 = Calc|x86
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Calc|x64.ActiveCfg = Debug|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Calc|x64.Build.0 = Debug|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Calc|x86.ActiveCfg = Debug|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Calc|x86.Build.0 = Debug|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Debug|x64.Build.0 = Debug|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Debug|x86.Build.0 = Debug|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Release|x64.ActiveCfg = Release|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Release|x64.Build.0 = Release|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Release|x86.ActiveCfg = Release|Any CPU
+		{12AD4774-A065-493F-8E2B-3A66E30AF1C8}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82D997E4-39E4-4818-B110-A1E703EF5C3A}
+	EndGlobalSection
+EndGlobal
