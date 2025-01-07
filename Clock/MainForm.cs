@@ -118,9 +118,6 @@ namespace Clock
 			{
 				// создаем шрифт с заданным размером
 				customFont = new Font(_fonts.Families[0], 32, FontStyle.Regular);
-				//currentFont = new Font(_fonts.Families[1],32,FontStyle.Regular);
-				// применяем шрифт 
-				//labelTime.Font = customFont;
 			}
 			else
 			{
@@ -142,7 +139,6 @@ namespace Clock
 		{
 			ToolStripMenuItem it = (ToolStripMenuItem) sender;
 			labelTime.Font = it.Checked == true ? customFont : currentFont;
-			
 			
 		}
 	}
