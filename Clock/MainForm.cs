@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Drawing.Text;
-using System.Linq;
-using System.Runtime.Remoting;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Windows.Forms;
 
 namespace Clock
@@ -25,9 +16,10 @@ namespace Clock
 			this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width, 50);
 			
 			currentFont = this.Font;
+			SetSelectedValue("first value");
 			//currentFont.Size = labelTime.Font.Size;
-			LoadCustomFont();
-			ApplyFontToLabelTime();
+			//LoadCustomFont();
+			//ApplyFontToLabelTime();
 		}
 		void SetVisibility(bool visible)
 		{
@@ -134,6 +126,86 @@ namespace Clock
 		{
 			labelTime.Font = new System.Drawing.Font(labelTime.Font.FontFamily, 32, FontStyle.Regular);
 		}
+
+
+		private string defaultValue = "Значение по умолчанию";
+
+		// метод обработчик кликов по пунктам меню
+		private void ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if(sender is ToolStripMenuItem selectedItem)
+			{
+				//если пукт уже выбран, снимаем выбор	
+				if (!selectedItem.Checked)
+				{
+					selectedItem.Checked = false;
+					//устанавливаем значению по умолчанию
+					SetDefaultValue();
+				}
+				else
+				{
+					//сбрасываем состояние всех пуктов подменю
+					foreach (ToolStripItem item in selectedItem.Owner.Items)
+					{
+						if (item is ToolStripMenuItem menuItem)
+						{
+							menuItem.Checked = false;
+						}
+					}
+					//устанавливаем выбранный пункт
+					selectedItem.Checked = true;
+					SetSelectedValue(selectedItem.Text);
+				}
+			}
+		}
+		//метод для установки значения по умолчанию
+		private void SetDefaultValue()
+		{
+			// значению по умолчанию
+			MessageBox.Show("Default value");
+		}
+
+		//метод для установки выбранного значения
+		private void SetSelectedValue(string value)
+		{
+			MessageBox.Show("Selected value");
+		}
+		//private void ToolStripMenuItem_Click(object sender, EventArgs e)
+		//{
+		//	if(sender is ToolStripMenuItem selectedItem)
+		//	{
+		//		//сбрасываем состояние всех пунктов меню
+		//		foreach (ToolStripItem item in selectedItem.Owner.Items)
+		//		{
+		//			if(item is ToolStripMenuItem menuItem)
+		//			{
+		//				menuItem.Checked = false;
+		//			}
+		//		}
+		//		// устанавливаем Checked для выбранного пункта 
+		//		selectedItem.Checked = true;
+		//	}
+		//}
+
+		//метод для проверки и выбора значения по умолчанию 
+		//private void CheckDefaultMenuItem(ToolStripMenuItem defaultItem)
+		//{
+		//	bool anyChecked = false;
+		//	// проверяем, выбран ли какой-либо пункт меню
+		//	foreach (ToolStripItem item in defaultItem.Owner.Items)
+		//	{
+		//		if (item is ToolStripMenuItem menuItem && menuItem.Checked)
+		//		{
+		//			anyChecked = true;
+		//			break;
+		//		}
+		//	}
+		//	// если ничего не выбрано, устанвливаем пункт по умолчанию
+		//	if (!anyChecked)
+		//	{
+		//		defaultItem.Checked = true;
+		//	}
+		//}
 
 		private void ToolStripMenuItemChooseFont_Click(object sender, EventArgs e)
 		{

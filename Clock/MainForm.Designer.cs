@@ -39,6 +39,9 @@
 			this.ToolStripMenuItemShowWeekDay = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.ToolStripMenuItemChooseFont = new System.Windows.Forms.ToolStripMenuItem();
+			this.digitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.moscowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.terminatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStripMenuItemColors = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStripMenuItemBackgroundColor = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStripMenuItemForegroundColor = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,9 +54,6 @@
 			this.checkBoxShowWeekDay = new System.Windows.Forms.CheckBox();
 			this.buttonHideControls = new System.Windows.Forms.Button();
 			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-			this.digitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.moscowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.terminatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -138,6 +138,30 @@
 			this.ToolStripMenuItemChooseFont.Name = "ToolStripMenuItemChooseFont";
 			this.ToolStripMenuItemChooseFont.Size = new System.Drawing.Size(209, 22);
 			this.ToolStripMenuItemChooseFont.Text = "Choose font";
+			// 
+			// digitToolStripMenuItem
+			// 
+			this.digitToolStripMenuItem.CheckOnClick = true;
+			this.digitToolStripMenuItem.Name = "digitToolStripMenuItem";
+			this.digitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.digitToolStripMenuItem.Text = "Digit";
+			this.digitToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
+			// 
+			// moscowToolStripMenuItem
+			// 
+			this.moscowToolStripMenuItem.CheckOnClick = true;
+			this.moscowToolStripMenuItem.Name = "moscowToolStripMenuItem";
+			this.moscowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.moscowToolStripMenuItem.Text = "Moscow 2024";
+			this.moscowToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
+			// 
+			// terminatToolStripMenuItem
+			// 
+			this.terminatToolStripMenuItem.CheckOnClick = true;
+			this.terminatToolStripMenuItem.Name = "terminatToolStripMenuItem";
+			this.terminatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.terminatToolStripMenuItem.Text = "Terminator";
+			this.terminatToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
 			// 
 			// ToolStripMenuItemColors
 			// 
@@ -227,27 +251,6 @@
 			this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
 			this.notifyIcon.Text = "notifyIcon";
 			this.notifyIcon.Visible = true;
-			// 
-			// digitToolStripMenuItem
-			// 
-			this.digitToolStripMenuItem.CheckOnClick = true;
-			this.digitToolStripMenuItem.Name = "digitToolStripMenuItem";
-			this.digitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.digitToolStripMenuItem.Text = "Digit";
-			// 
-			// moscowToolStripMenuItem
-			// 
-			this.moscowToolStripMenuItem.CheckOnClick = true;
-			this.moscowToolStripMenuItem.Name = "moscowToolStripMenuItem";
-			this.moscowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.moscowToolStripMenuItem.Text = "Moscow 2024";
-			// 
-			// terminatToolStripMenuItem
-			// 
-			this.terminatToolStripMenuItem.CheckOnClick = true;
-			this.terminatToolStripMenuItem.Name = "terminatToolStripMenuItem";
-			this.terminatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.terminatToolStripMenuItem.Text = "Terminator";
 			// 
 			// MainForm
 			// 
