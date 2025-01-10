@@ -18,10 +18,6 @@ namespace Clock
 			this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width, 50);
 			
 			currentFont = this.Font;
-			//labelTime.Font = new Font(, control.Font.Size, control.Font.Style);
-			//currentFont.Size = labelTime.Font.Size;
-			//LoadCustomFont();
-			//ApplyFontToLabelTime();
 		}
 		void SetVisibility(bool visible)
 		{
@@ -94,33 +90,6 @@ namespace Clock
 		{
 			checkBoxShowWeekDay.Checked = !checkBoxShowWeekDay.Checked;
 		}
-		private void LoadCustomFont()
-		{
-			string fontPath = "C:\\Users\\rls\\source\\repos\\WindowsDevelopment\\WinAPI\\Calc\\Fonts\\light-led-display-7\\light_led_display-7.ttf";
-			try
-			{
-				//загружаем шрифт
-				fontCollection.AddFontFile(fontPath);
-			}
-			catch (Exception ex)
-			{
-
-				MessageBox.Show($"Loader font error: {ex.Message}");
-			}
-		}
-
-		private void ApplyFontToLabelTime()
-		{
-			if (fontCollection.Families.Length > 1)
-			{
-				// создаем шрифт с заданным размером
-				customFont = new Font(fontCollection.Families[1], 32, FontStyle.Regular);
-			}
-			else
-			{
-				MessageBox.Show("Font don't loaded");
-			}
-		}
 
 		private void ToolStripMenuItemTopmost_CheckedChanged(object sender, EventArgs e)
 		{
@@ -131,9 +100,6 @@ namespace Clock
 		{
 			labelTime.Font = new System.Drawing.Font(labelTime.Font.FontFamily, 32, FontStyle.Regular);
 		}
-
-
-		//private string defaultValue = "Значение по умолчанию";
 
 		// метод обработчик кликов по пунктам меню
 		private void ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -146,7 +112,6 @@ namespace Clock
 				{
 					selectedItem.Checked = false;
 					//устанавливаем значению по умолчанию
-					//SetDefaultValue();
 					CheckDefaultMenuItem(selectedItem);
 
 				}
@@ -162,54 +127,22 @@ namespace Clock
 					}
 					//устанавливаем выбранный пункт и шрифт
 					selectedItem.Checked = true;
-					//LoadFontFromResourceHandly(Properties.Resources.digital_7);
-					ApplyFontToLabelTime();
-			
-					//SetSelectedValue(selectedItem.Text);
-					if(selectedItem.Text == "Digit" && fontCollection.Families.Length >1)
+
+					if(selectedItem.Text == "Light Led" && fontCollection.Families.Length >0)
+					{
+						ApplyFontToControl(labelTime, fontCollection.Families[0]);
+					}
+					else if (selectedItem.Text== "Moscow 2024" && fontCollection.Families.Length >1)
 					{
 						ApplyFontToControl(labelTime, fontCollection.Families[1]);
 					}
-					else if (selectedItem.Text== "Moscow 2024" && fontCollection.Families.Length >2)
+					else if (selectedItem.Text == "Terminator" && fontCollection.Families.Length > 2)
 					{
 						ApplyFontToControl(labelTime, fontCollection.Families[2]);
-					}
-					else if (selectedItem.Text == "Terminator" && fontCollection.Families.Length > 3)
-					{
-						ApplyFontToControl(labelTime, fontCollection.Families[3]);
 					}
 				}
 			}
 		}
-		//метод для установки значения по умолчанию
-		//private void SetDefaultValue()
-		//{
-		//	// значению по умолчанию
-		//	MessageBox.Show("Default value");
-		//}
-
-		//метод для установки выбранного значения
-		//private void SetSelectedValue(string value)
-		//{
-		//	MessageBox.Show("Selected value");
-		//}
-		//private void ToolStripMenuItem_Click(object sender, EventArgs e)
-		//{
-		//	if(sender is ToolStripMenuItem selectedItem)
-		//	{
-		//		//сбрасываем состояние всех пунктов меню
-		//		foreach (ToolStripItem item in selectedItem.Owner.Items)
-		//		{
-		//			if(item is ToolStripMenuItem menuItem)
-		//			{
-		//				menuItem.Checked = false;
-		//			}
-		//		}
-		//		// устанавливаем Checked для выбранного пункта 
-		//		selectedItem.Checked = true;
-		//	}
-		//}
-
 		//метод для проверки и выбора значения по умолчанию
 		private void CheckDefaultMenuItem(ToolStripMenuItem defaultItem)
 		{
@@ -230,20 +163,19 @@ namespace Clock
 			}
 		}
 
-		private void ToolStripMenuItemChooseFont_Click(object sender, EventArgs e)
-		{
-			ToolStripMenuItem it = (ToolStripMenuItem) sender;
-			//labelTime.Font = it.Checked == true ? customFont : currentFont;
-			//ApplyFontToControl(labelTime, AddFontToCollection(Properties.Resources.terminat));
-		}
-
+		//private void ToolStripMenuItemChooseFont_Click(object sender, EventArgs e)
+		//{
+		//	ToolStripMenuItem it = (ToolStripMenuItem) sender;
+		//	//labelTime.Font = it.Checked == true ? customFont : currentFont;
+		//	//ApplyFontToControl(labelTime, AddFontToCollection(Properties.Resources.terminat));
+		//}
 		private void LoadFontsFromResources()
 		{
 			try
 			{
 				defaultFontFamily = this.Font.FontFamily;//AddFontToCollection(Properties.Resources.DefaultFont);
 				Console.WriteLine("Загружен  шрифт по умолчанию");
-				AddFontToCollection(Properties.Resources.digital_7);
+				AddFontToCollection(Properties.Resources.Light_LED_Display_7);
 				Console.WriteLine("Загружен  шрифт digital_7");
 				AddFontToCollection(Properties.Resources.MOSCOW2024);
 				Console.WriteLine("Загружен  шрифт MOSCOW2024");
@@ -269,7 +201,6 @@ namespace Clock
 			}
 			return fontCollection.Families[fontCollection.Families.Length-1];
 		}
-
 		private void ApplyFontToControl(Control control, FontFamily fontFamily)
 		{
 			control.Font = new Font(fontFamily, control.Font.Size, control.Font.Style);
@@ -278,31 +209,6 @@ namespace Clock
 			foreach (Control child in control.Controls)
 			{
 				ApplyFontToControl(child, fontFamily);
-			}
-		}
-
-		private void LoadFontFromResourceHandly(byte[] fontData)
-		{
-			IntPtr fontPtr = Marshal.AllocCoTaskMem(fontData.Length);
-
-			try
-			{
-				Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
-				fontCollection.AddMemoryFont(fontPtr, fontData.Length);
-				if (fontCollection.Families.Length > 0)
-				{
-					FontFamily loaderFont = fontCollection.Families[fontCollection.Families.Length - 1];
-					ApplyFontToControl(this, loaderFont);
-				}
-				else
-				{
-					MessageBox.Show("Не удалось загрузить шрифт");
-				}
-			}
-			finally
-			{
-
-				Marshal.FreeCoTaskMem(fontPtr);
 			}
 		}
 	}

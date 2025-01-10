@@ -63,9 +63,9 @@ namespace Clock.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] digital_7 {
+        internal static byte[] Light_LED_Display_7 {
             get {
-                object obj = ResourceManager.GetObject("digital_7", resourceCulture);
+                object obj = ResourceManager.GetObject("Light_LED_Display_7", resourceCulture);
                 return ((byte[])(obj));
             }
         }

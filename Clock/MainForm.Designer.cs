@@ -86,7 +86,7 @@
             this.toolStripSeparator4,
             this.ToolStripMenuItemExit});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(210, 204);
+			this.contextMenuStrip.Size = new System.Drawing.Size(210, 226);
 			// 
 			// ToolStripMenuItemTopmost
 			// 
@@ -144,7 +144,7 @@
 			this.digitToolStripMenuItem.CheckOnClick = true;
 			this.digitToolStripMenuItem.Name = "digitToolStripMenuItem";
 			this.digitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.digitToolStripMenuItem.Text = "Digit";
+			this.digitToolStripMenuItem.Text = "Light Led";
 			this.digitToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
 			// 
 			// moscowToolStripMenuItem
@@ -175,13 +175,13 @@
 			// ToolStripMenuItemBackgroundColor
 			// 
 			this.ToolStripMenuItemBackgroundColor.Name = "ToolStripMenuItemBackgroundColor";
-			this.ToolStripMenuItemBackgroundColor.Size = new System.Drawing.Size(168, 22);
+			this.ToolStripMenuItemBackgroundColor.Size = new System.Drawing.Size(180, 22);
 			this.ToolStripMenuItemBackgroundColor.Text = "Background color";
 			// 
 			// ToolStripMenuItemForegroundColor
 			// 
 			this.ToolStripMenuItemForegroundColor.Name = "ToolStripMenuItemForegroundColor";
-			this.ToolStripMenuItemForegroundColor.Size = new System.Drawing.Size(168, 22);
+			this.ToolStripMenuItemForegroundColor.Size = new System.Drawing.Size(180, 22);
 			this.ToolStripMenuItemForegroundColor.Text = "Foreground color";
 			// 
 			// toolStripSeparator3
