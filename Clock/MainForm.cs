@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Clock
 {
 	public partial class MainForm : Form
 	{
-		private PrivateFontCollection _fonts = new PrivateFontCollection();
+		private PrivateFontCollection fontCollection = new PrivateFontCollection();
 		Font currentFont, customFont;
+		private FontFamily defaultFontFamily; // для хранения шрифта по умолчанию при загрузке
 		public MainForm()
 		{
 			InitializeComponent();
@@ -16,7 +18,7 @@ namespace Clock
 			this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width, 50);
 			
 			currentFont = this.Font;
-			SetSelectedValue("first value");
+			//labelTime.Font = new Font(, control.Font.Size, control.Font.Style);
 			//currentFont.Size = labelTime.Font.Size;
 			//LoadCustomFont();
 			//ApplyFontToLabelTime();
@@ -34,6 +36,9 @@ namespace Clock
 		private void MainForm_Load(object sender, EventArgs e)
 		{
 			showControlsToolStripMenuItemShowControls.Checked = true;
+
+			LoadFontsFromResources(); // загружаем все шрифты
+			ApplyFontToControl(this, defaultFontFamily);
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
@@ -95,7 +100,7 @@ namespace Clock
 			try
 			{
 				//загружаем шрифт
-				_fonts.AddFontFile(fontPath);
+				fontCollection.AddFontFile(fontPath);
 			}
 			catch (Exception ex)
 			{
@@ -106,10 +111,10 @@ namespace Clock
 
 		private void ApplyFontToLabelTime()
 		{
-			if(_fonts.Families.Length >0)
+			if (fontCollection.Families.Length > 1)
 			{
 				// создаем шрифт с заданным размером
-				customFont = new Font(_fonts.Families[0], 32, FontStyle.Regular);
+				customFont = new Font(fontCollection.Families[1], 32, FontStyle.Regular);
 			}
 			else
 			{
@@ -128,19 +133,22 @@ namespace Clock
 		}
 
 
-		private string defaultValue = "Значение по умолчанию";
+		//private string defaultValue = "Значение по умолчанию";
 
 		// метод обработчик кликов по пунктам меню
 		private void ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if(sender is ToolStripMenuItem selectedItem)
 			{
+				LoadFontsFromResources();
 				//если пукт уже выбран, снимаем выбор	
 				if (!selectedItem.Checked)
 				{
 					selectedItem.Checked = false;
 					//устанавливаем значению по умолчанию
-					SetDefaultValue();
+					//SetDefaultValue();
+					CheckDefaultMenuItem(selectedItem);
+
 				}
 				else
 				{
@@ -152,24 +160,39 @@ namespace Clock
 							menuItem.Checked = false;
 						}
 					}
-					//устанавливаем выбранный пункт
+					//устанавливаем выбранный пункт и шрифт
 					selectedItem.Checked = true;
-					SetSelectedValue(selectedItem.Text);
+					//LoadFontFromResourceHandly(Properties.Resources.digital_7);
+					ApplyFontToLabelTime();
+			
+					//SetSelectedValue(selectedItem.Text);
+					if(selectedItem.Text == "Digit" && fontCollection.Families.Length >1)
+					{
+						ApplyFontToControl(labelTime, fontCollection.Families[1]);
+					}
+					else if (selectedItem.Text== "Moscow 2024" && fontCollection.Families.Length >2)
+					{
+						ApplyFontToControl(labelTime, fontCollection.Families[2]);
+					}
+					else if (selectedItem.Text == "Terminator" && fontCollection.Families.Length > 3)
+					{
+						ApplyFontToControl(labelTime, fontCollection.Families[3]);
+					}
 				}
 			}
 		}
 		//метод для установки значения по умолчанию
-		private void SetDefaultValue()
-		{
-			// значению по умолчанию
-			MessageBox.Show("Default value");
-		}
+		//private void SetDefaultValue()
+		//{
+		//	// значению по умолчанию
+		//	MessageBox.Show("Default value");
+		//}
 
 		//метод для установки выбранного значения
-		private void SetSelectedValue(string value)
-		{
-			MessageBox.Show("Selected value");
-		}
+		//private void SetSelectedValue(string value)
+		//{
+		//	MessageBox.Show("Selected value");
+		//}
 		//private void ToolStripMenuItem_Click(object sender, EventArgs e)
 		//{
 		//	if(sender is ToolStripMenuItem selectedItem)
@@ -187,31 +210,100 @@ namespace Clock
 		//	}
 		//}
 
-		//метод для проверки и выбора значения по умолчанию 
-		//private void CheckDefaultMenuItem(ToolStripMenuItem defaultItem)
-		//{
-		//	bool anyChecked = false;
-		//	// проверяем, выбран ли какой-либо пункт меню
-		//	foreach (ToolStripItem item in defaultItem.Owner.Items)
-		//	{
-		//		if (item is ToolStripMenuItem menuItem && menuItem.Checked)
-		//		{
-		//			anyChecked = true;
-		//			break;
-		//		}
-		//	}
-		//	// если ничего не выбрано, устанвливаем пункт по умолчанию
-		//	if (!anyChecked)
-		//	{
-		//		defaultItem.Checked = true;
-		//	}
-		//}
+		//метод для проверки и выбора значения по умолчанию
+		private void CheckDefaultMenuItem(ToolStripMenuItem defaultItem)
+		{
+			bool anyChecked = false;
+			// проверяем, выбран ли какой-либо пункт меню
+			foreach (ToolStripItem item in defaultItem.Owner.Items)
+			{
+				if (item is ToolStripMenuItem menuItem && menuItem.Checked)
+				{
+					anyChecked = true;
+					break;
+				}
+			}
+			// если ничего не выбрано, устанвливаем пункт по умолчанию
+			if (!anyChecked)
+			{
+				ApplyFontToControl(this, defaultFontFamily); //defaultItem.Checked = true;
+			}
+		}
 
 		private void ToolStripMenuItemChooseFont_Click(object sender, EventArgs e)
 		{
 			ToolStripMenuItem it = (ToolStripMenuItem) sender;
-			labelTime.Font = it.Checked == true ? customFont : currentFont;
-			
+			//labelTime.Font = it.Checked == true ? customFont : currentFont;
+			//ApplyFontToControl(labelTime, AddFontToCollection(Properties.Resources.terminat));
+		}
+
+		private void LoadFontsFromResources()
+		{
+			try
+			{
+				defaultFontFamily = this.Font.FontFamily;//AddFontToCollection(Properties.Resources.DefaultFont);
+				Console.WriteLine("Загружен  шрифт по умолчанию");
+				AddFontToCollection(Properties.Resources.digital_7);
+				Console.WriteLine("Загружен  шрифт digital_7");
+				AddFontToCollection(Properties.Resources.MOSCOW2024);
+				Console.WriteLine("Загружен  шрифт MOSCOW2024");
+				AddFontToCollection(Properties.Resources.terminat);
+				Console.WriteLine("Загружен  шрифт terminat");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Ошибка загрузки шрифта: {ex.Message}");
+			}
+		}
+
+		//метод для загрузки шрифта из ресурсов
+		private FontFamily AddFontToCollection(byte[] fontData)
+		{
+			IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
+			System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+			fontCollection.AddMemoryFont(fontPtr, fontData.Length);
+			System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
+			if (fontCollection.Families.Length == 0)
+			{
+				throw new Exception("Fonts didn't load");
+			}
+			return fontCollection.Families[fontCollection.Families.Length-1];
+		}
+
+		private void ApplyFontToControl(Control control, FontFamily fontFamily)
+		{
+			control.Font = new Font(fontFamily, control.Font.Size, control.Font.Style);
+
+			// рекурсивное применение к дочерним элементам
+			foreach (Control child in control.Controls)
+			{
+				ApplyFontToControl(child, fontFamily);
+			}
+		}
+
+		private void LoadFontFromResourceHandly(byte[] fontData)
+		{
+			IntPtr fontPtr = Marshal.AllocCoTaskMem(fontData.Length);
+
+			try
+			{
+				Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+				fontCollection.AddMemoryFont(fontPtr, fontData.Length);
+				if (fontCollection.Families.Length > 0)
+				{
+					FontFamily loaderFont = fontCollection.Families[fontCollection.Families.Length - 1];
+					ApplyFontToControl(this, loaderFont);
+				}
+				else
+				{
+					MessageBox.Show("Не удалось загрузить шрифт");
+				}
+			}
+			finally
+			{
+
+				Marshal.FreeCoTaskMem(fontPtr);
+			}
 		}
 	}
 }
