@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -173,14 +174,15 @@ namespace Clock
 		{
 			try
 			{
-				defaultFontFamily = this.Font.FontFamily;//AddFontToCollection(Properties.Resources.DefaultFont);
-				Console.WriteLine("Загружен  шрифт по умолчанию");
-				AddFontToCollection(Properties.Resources.Light_LED_Display_7);
-				Console.WriteLine("Загружен  шрифт digital_7");
-				AddFontToCollection(Properties.Resources.MOSCOW2024);
-				Console.WriteLine("Загружен  шрифт MOSCOW2024");
-				AddFontToCollection(Properties.Resources.terminat);
-				Console.WriteLine("Загружен  шрифт terminat");
+				//MessageBox("Загружен  шрифт по умолчанию",);
+				AddFontToCollectionByAllocMem(Properties.Resources.Light);
+				//Console.WriteLine("Загружен  шрифт digital_7");
+				AddFontToCollectionByAllocMem(Properties.Resources.MOSCOW2024);
+				//Console.WriteLine("Загружен  шрифт MOSCOW2024");
+				AddFontToCollectionByAllocMem(Properties.Resources.Terminator);
+				//Console.WriteLine("Загружен  шрифт terminat");
+				defaultFontFamily = this.Font.FontFamily;
+				//AddFontToCollectionByAllocMem(Properties.Resources.DefaultFont);
 			}
 			catch (Exception ex)
 			{
@@ -188,18 +190,54 @@ namespace Clock
 			}
 		}
 
-		//метод для загрузки шрифта из ресурсов
-		private FontFamily AddFontToCollection(byte[] fontData)
+		//метод для загрузки шрифта из ресурсов с использованием выделения памяти
+		private FontFamily AddFontToCollectionByAllocMem(byte[] fontData)
 		{
+			// выделяем память для данных шрифта
 			IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
+			// массив байтов шрифта копируем в выделенную память
 			System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+			// загружаем шрифт из памяти в коллекцию шрифтов
 			fontCollection.AddMemoryFont(fontPtr, fontData.Length);
+			// освобождаем память
 			System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
 			if (fontCollection.Families.Length == 0)
 			{
 				throw new Exception("Fonts didn't load");
 			}
-			return fontCollection.Families[fontCollection.Families.Length-1];
+			return fontCollection.Families[fontCollection.Families.Length-1];  // возвращаем последний в коллекции шрифт
+		}
+
+		// метод для загрузки шрифта из ресурсов с использованием временного файла
+		private FontFamily AddFontToCollectionByTempFile(byte[] fontData)
+		{
+			// создаем временный файл
+			string tempFilePath = Path.GetTempFileName();
+			//string tempFilePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".ttf");
+
+			try
+			{
+				if(File.Exists(tempFilePath))
+				{
+					File.SetAttributes(tempFilePath, FileAttributes.Normal);
+				}
+				//FontCollection fontCollection = new FontCollection();
+				// записываем даннные шрифта во временный файл
+				File.WriteAllBytes(tempFilePath, fontData);
+				// добавляем файл шрифта в коллекцию
+				fontCollection.AddFontFile(tempFilePath);
+				// проверяем, что файл успешно добавлен
+				if (fontCollection.Families.Length == 0)
+				{
+					throw new Exception("Font could not be loaded");
+				}
+				return fontCollection.Families[0];
+			}
+			finally
+			{
+				// удаляем временный файл
+				File.Delete(tempFilePath);
+			}
 		}
 		private void ApplyFontToControl(Control control, FontFamily fontFamily)
 		{

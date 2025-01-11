@@ -41,7 +41,6 @@
 			this.ToolStripMenuItemChooseFont = new System.Windows.Forms.ToolStripMenuItem();
 			this.digitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.moscowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.terminatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStripMenuItemColors = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStripMenuItemBackgroundColor = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStripMenuItemForegroundColor = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +53,7 @@
 			this.checkBoxShowWeekDay = new System.Windows.Forms.CheckBox();
 			this.buttonHideControls = new System.Windows.Forms.Button();
 			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+			this.snowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -134,7 +134,7 @@
 			this.ToolStripMenuItemChooseFont.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.digitToolStripMenuItem,
             this.moscowToolStripMenuItem,
-            this.terminatToolStripMenuItem});
+            this.snowToolStripMenuItem});
 			this.ToolStripMenuItemChooseFont.Name = "ToolStripMenuItemChooseFont";
 			this.ToolStripMenuItemChooseFont.Size = new System.Drawing.Size(209, 22);
 			this.ToolStripMenuItemChooseFont.Text = "Choose font";
@@ -154,14 +154,6 @@
 			this.moscowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.moscowToolStripMenuItem.Text = "Moscow 2024";
 			this.moscowToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
-			// 
-			// terminatToolStripMenuItem
-			// 
-			this.terminatToolStripMenuItem.CheckOnClick = true;
-			this.terminatToolStripMenuItem.Name = "terminatToolStripMenuItem";
-			this.terminatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.terminatToolStripMenuItem.Text = "Terminator";
-			this.terminatToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
 			// 
 			// ToolStripMenuItemColors
 			// 
@@ -237,7 +229,7 @@
 			// buttonHideControls
 			// 
 			this.buttonHideControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonHideControls.Location = new System.Drawing.Point(22, 311);
+			this.buttonHideControls.Location = new System.Drawing.Point(54, 311);
 			this.buttonHideControls.Name = "buttonHideControls";
 			this.buttonHideControls.Size = new System.Drawing.Size(181, 55);
 			this.buttonHideControls.TabIndex = 3;
@@ -252,11 +244,19 @@
 			this.notifyIcon.Text = "notifyIcon";
 			this.notifyIcon.Visible = true;
 			// 
+			// snowToolStripMenuItem
+			// 
+			this.snowToolStripMenuItem.CheckOnClick = true;
+			this.snowToolStripMenuItem.Name = "snowToolStripMenuItem";
+			this.snowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.snowToolStripMenuItem.Text = "Terminator";
+			this.snowToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(286, 392);
+			this.ClientSize = new System.Drawing.Size(312, 392);
 			this.Controls.Add(this.buttonHideControls);
 			this.Controls.Add(this.checkBoxShowWeekDay);
 			this.Controls.Add(this.cbShowDate);
@@ -296,7 +296,7 @@
 		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemExit;
 		private System.Windows.Forms.ToolStripMenuItem digitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem moscowToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem terminatToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem snowToolStripMenuItem;
 	}
 }
 

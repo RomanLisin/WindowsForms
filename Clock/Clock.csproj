@@ -70,7 +70,10 @@
     </Compile>
     <None Include=".editorconfig" />
     <EmbeddedResource Include="MOSCOW2024.ttf" />
-    <None Include="Properties\light_led_display-7.ttf" />
+    <EmbeddedResource Include="Fonts\MOSCOW2024.ttf" />
+    <EmbeddedResource Include="Fonts\snow-for-santa\SnowForSanta.ttf" />
+    <EmbeddedResource Include="Properties\light_led_display-7.ttf" />
+    <EmbeddedResource Include="Fonts\Terminator.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -81,7 +84,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="terminat.ttf" />
-    <None Include="Resources\Light LED Display-7.ttf" />
+    <EmbeddedResource Include="Resources\Light LED Display-7.ttf" />
+    <EmbeddedResource Include="Resources\light_led_display-7.ttf" />
+    <EmbeddedResource Include="Resources\MOSCOW2024.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

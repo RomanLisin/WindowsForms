@@ -63,9 +63,9 @@ namespace Clock.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Light_LED_Display_7 {
+        internal static byte[] Light {
             get {
-                object obj = ResourceManager.GetObject("Light_LED_Display_7", resourceCulture);
+                object obj = ResourceManager.GetObject("Light", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -83,9 +83,19 @@ namespace Clock.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] terminat {
+        internal static byte[] SnowForSanta {
             get {
-                object obj = ResourceManager.GetObject("terminat", resourceCulture);
+                object obj = ResourceManager.GetObject("SnowForSanta", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Terminator {
+            get {
+                object obj = ResourceManager.GetObject("Terminator", resourceCulture);
                 return ((byte[])(obj));
             }
         }
