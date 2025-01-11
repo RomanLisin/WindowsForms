@@ -17,6 +17,7 @@ namespace Clock
 			InitializeComponent();
 			labelTime.BackColor = Color.AliceBlue;
 			this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width, 50);
+			ToolStripMenuItemShowControls.Checked = true;
 			
 			currentFont = this.Font;
 		}
@@ -32,7 +33,6 @@ namespace Clock
 		}
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			showControlsToolStripMenuItemShowControls.Checked = true;
 
 			LoadFontsFromResources(); // загружаем все шрифты
 			ApplyFontToControl(this, defaultFontFamily);
@@ -62,23 +62,23 @@ namespace Clock
 
 		private void buttonHideControls_Click(object sender, EventArgs e)
 		{
-			showControlsToolStripMenuItemShowControls_CheckedChanged(showControlsToolStripMenuItemShowControls, EventArgs.Empty);
-			showControlsToolStripMenuItemShowControls.Checked = false;
-			if (!showControlsToolStripMenuItemShowControls.Checked) SetVisibility(false);
+			showControlsToolStripMenuItemShowControls_CheckedChanged(ToolStripMenuItemShowControls, EventArgs.Empty);
+			ToolStripMenuItemShowControls.Checked = false;
+			if (!ToolStripMenuItemShowControls.Checked) SetVisibility(false);
 			else SetVisibility(true);
 		}
 
 		private void labelTime_DoubleClick(object sender, EventArgs e)
 		{
-			showControlsToolStripMenuItemShowControls_CheckedChanged(showControlsToolStripMenuItemShowControls, EventArgs.Empty);
-			showControlsToolStripMenuItemShowControls.Checked = true;
+			showControlsToolStripMenuItemShowControls_CheckedChanged(ToolStripMenuItemShowControls, EventArgs.Empty);
+			ToolStripMenuItemShowControls.Checked = true;
 			SetVisibility(true);
 		}
 
 		
 		private void showControlsToolStripMenuItemShowControls_CheckedChanged(object sender, EventArgs e)
 		{
-			SetVisibility(showControlsToolStripMenuItemShowControls.Checked);//!buttonHideControls.Visible);
+			SetVisibility(ToolStripMenuItemShowControls.Checked);//!buttonHideControls.Visible);
 		}
 
 
@@ -97,10 +97,10 @@ namespace Clock
 			this.TopMost = !this.TopMost;
 		}
 
-		private void labelTime_FontChanged(object sender, EventArgs e)
-		{
-			labelTime.Font = new System.Drawing.Font(labelTime.Font.FontFamily, 32, FontStyle.Regular);
-		}
+		//private void labelTime_FontChanged(object sender, EventArgs e)
+		//{
+		//	labelTime.Font = new System.Drawing.Font(labelTime.Font.FontFamily, 32, FontStyle.Regular);
+		//}
 
 		// метод обработчик кликов по пунктам меню
 		private void ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -209,36 +209,36 @@ namespace Clock
 		}
 
 		// метод для загрузки шрифта из ресурсов с использованием временного файла
-		private FontFamily AddFontToCollectionByTempFile(byte[] fontData)
-		{
-			// создаем временный файл
-			string tempFilePath = Path.GetTempFileName();
-			//string tempFilePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".ttf");
+		//private FontFamily AddFontToCollectionByTempFile(byte[] fontData)
+		//{
+		//	// создаем временный файл
+		//	string tempFilePath = Path.GetTempFileName();
+		//	//string tempFilePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".ttf");
 
-			try
-			{
-				if(File.Exists(tempFilePath))
-				{
-					File.SetAttributes(tempFilePath, FileAttributes.Normal);
-				}
-				//FontCollection fontCollection = new FontCollection();
-				// записываем даннные шрифта во временный файл
-				File.WriteAllBytes(tempFilePath, fontData);
-				// добавляем файл шрифта в коллекцию
-				fontCollection.AddFontFile(tempFilePath);
-				// проверяем, что файл успешно добавлен
-				if (fontCollection.Families.Length == 0)
-				{
-					throw new Exception("Font could not be loaded");
-				}
-				return fontCollection.Families[0];
-			}
-			finally
-			{
-				// удаляем временный файл
-				File.Delete(tempFilePath);
-			}
-		}
+		//	try
+		//	{
+		//		if(File.Exists(tempFilePath))
+		//		{
+		//			File.SetAttributes(tempFilePath, FileAttributes.Normal);
+		//		}
+		//		//FontCollection fontCollection = new FontCollection();
+		//		// записываем даннные шрифта во временный файл
+		//		File.WriteAllBytes(tempFilePath, fontData);
+		//		// добавляем файл шрифта в коллекцию
+		//		fontCollection.AddFontFile(tempFilePath);
+		//		// проверяем, что файл успешно добавлен
+		//		if (fontCollection.Families.Length == 0)
+		//		{
+		//			throw new Exception("Font could not be loaded");
+		//		}
+		//		return fontCollection.Families[0];
+		//	}
+		//	finally
+		//	{
+		//		// удаляем временный файл
+		//		File.Delete(tempFilePath);
+		//	}
+		//}
 		private void ApplyFontToControl(Control control, FontFamily fontFamily)
 		{
 			control.Font = new Font(fontFamily, control.Font.Size, control.Font.Style);

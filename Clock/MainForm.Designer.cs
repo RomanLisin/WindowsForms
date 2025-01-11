@@ -33,7 +33,7 @@
 			this.labelTime = new System.Windows.Forms.Label();
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.ToolStripMenuItemTopmost = new System.Windows.Forms.ToolStripMenuItem();
-			this.showControlsToolStripMenuItemShowControls = new System.Windows.Forms.ToolStripMenuItem();
+			this.ToolStripMenuItemShowControls = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.ToolStripMenuItemShowDate = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStripMenuItemShowWeekDay = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +74,7 @@
 			// 
 			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemTopmost,
-            this.showControlsToolStripMenuItemShowControls,
+            this.ToolStripMenuItemShowControls,
             this.toolStripSeparator1,
             this.ToolStripMenuItemShowDate,
             this.ToolStripMenuItemShowWeekDay,
@@ -94,14 +94,15 @@
 			this.ToolStripMenuItemTopmost.Name = "ToolStripMenuItemTopmost";
 			this.ToolStripMenuItemTopmost.Size = new System.Drawing.Size(209, 22);
 			this.ToolStripMenuItemTopmost.Text = "Topmost";
+			this.ToolStripMenuItemTopmost.Click += new System.EventHandler(this.ToolStripMenuItemTopmost_CheckedChanged);
 			// 
-			// showControlsToolStripMenuItemShowControls
+			// ToolStripMenuItemShowControls
 			// 
-			this.showControlsToolStripMenuItemShowControls.CheckOnClick = true;
-			this.showControlsToolStripMenuItemShowControls.Name = "showControlsToolStripMenuItemShowControls";
-			this.showControlsToolStripMenuItemShowControls.Size = new System.Drawing.Size(209, 22);
-			this.showControlsToolStripMenuItemShowControls.Text = "Show controls";
-			this.showControlsToolStripMenuItemShowControls.CheckedChanged += new System.EventHandler(this.showControlsToolStripMenuItemShowControls_CheckedChanged);
+			this.ToolStripMenuItemShowControls.CheckOnClick = true;
+			this.ToolStripMenuItemShowControls.Name = "ToolStripMenuItemShowControls";
+			this.ToolStripMenuItemShowControls.Size = new System.Drawing.Size(209, 22);
+			this.ToolStripMenuItemShowControls.Text = "Show controls";
+			this.ToolStripMenuItemShowControls.CheckedChanged += new System.EventHandler(this.showControlsToolStripMenuItemShowControls_CheckedChanged);
 			// 
 			// toolStripSeparator1
 			// 
@@ -229,7 +230,7 @@
 			// buttonHideControls
 			// 
 			this.buttonHideControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonHideControls.Location = new System.Drawing.Point(54, 311);
+			this.buttonHideControls.Location = new System.Drawing.Point(79, 308);
 			this.buttonHideControls.Name = "buttonHideControls";
 			this.buttonHideControls.Size = new System.Drawing.Size(181, 55);
 			this.buttonHideControls.TabIndex = 3;
@@ -256,7 +257,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(312, 392);
+			this.ClientSize = new System.Drawing.Size(337, 392);
 			this.Controls.Add(this.buttonHideControls);
 			this.Controls.Add(this.checkBoxShowWeekDay);
 			this.Controls.Add(this.cbShowDate);
@@ -281,7 +282,7 @@
 		private System.Windows.Forms.NotifyIcon notifyIcon;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemTopmost;
-		private System.Windows.Forms.ToolStripMenuItem showControlsToolStripMenuItemShowControls;
+		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemShowControls;
 		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemShowDate;
 		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemShowWeekDay;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
