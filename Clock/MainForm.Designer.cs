@@ -41,9 +41,10 @@
 			this.ToolStripMenuItemChooseFont = new System.Windows.Forms.ToolStripMenuItem();
 			this.digitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.moscowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.snowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStripMenuItemColors = new System.Windows.Forms.ToolStripMenuItem();
-			this.ToolStripMenuItemBackgroundColor = new System.Windows.Forms.ToolStripMenuItem();
-			this.ToolStripMenuItemForegroundColor = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemBackgroundColor = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemForegroundColor = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.ToolStripMenuItemLoadOnWindowsStartup = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -53,7 +54,6 @@
 			this.checkBoxShowWeekDay = new System.Windows.Forms.CheckBox();
 			this.buttonHideControls = new System.Windows.Forms.Button();
 			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-			this.snowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -144,7 +144,7 @@
 			// 
 			this.digitToolStripMenuItem.CheckOnClick = true;
 			this.digitToolStripMenuItem.Name = "digitToolStripMenuItem";
-			this.digitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.digitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
 			this.digitToolStripMenuItem.Text = "Light Led";
 			this.digitToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
 			// 
@@ -152,30 +152,42 @@
 			// 
 			this.moscowToolStripMenuItem.CheckOnClick = true;
 			this.moscowToolStripMenuItem.Name = "moscowToolStripMenuItem";
-			this.moscowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.moscowToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
 			this.moscowToolStripMenuItem.Text = "Moscow 2024";
 			this.moscowToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
+			// 
+			// snowToolStripMenuItem
+			// 
+			this.snowToolStripMenuItem.CheckOnClick = true;
+			this.snowToolStripMenuItem.Name = "snowToolStripMenuItem";
+			this.snowToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+			this.snowToolStripMenuItem.Text = "Terminator";
+			this.snowToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
 			// 
 			// ToolStripMenuItemColors
 			// 
 			this.ToolStripMenuItemColors.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemBackgroundColor,
-            this.ToolStripMenuItemForegroundColor});
+            this.toolStripMenuItemBackgroundColor,
+            this.toolStripMenuItemForegroundColor});
 			this.ToolStripMenuItemColors.Name = "ToolStripMenuItemColors";
 			this.ToolStripMenuItemColors.Size = new System.Drawing.Size(209, 22);
 			this.ToolStripMenuItemColors.Text = "Colors";
 			// 
-			// ToolStripMenuItemBackgroundColor
+			// toolStripMenuItemBackgroundColor
 			// 
-			this.ToolStripMenuItemBackgroundColor.Name = "ToolStripMenuItemBackgroundColor";
-			this.ToolStripMenuItemBackgroundColor.Size = new System.Drawing.Size(180, 22);
-			this.ToolStripMenuItemBackgroundColor.Text = "Background color";
+			this.toolStripMenuItemBackgroundColor.CheckOnClick = true;
+			this.toolStripMenuItemBackgroundColor.Name = "toolStripMenuItemBackgroundColor";
+			this.toolStripMenuItemBackgroundColor.Size = new System.Drawing.Size(180, 22);
+			this.toolStripMenuItemBackgroundColor.Text = "Background color";
+			this.toolStripMenuItemBackgroundColor.Click += new System.EventHandler(this.ToolStripMenuItemBackgroundColor_Click);
 			// 
-			// ToolStripMenuItemForegroundColor
+			// toolStripMenuItemForegroundColor
 			// 
-			this.ToolStripMenuItemForegroundColor.Name = "ToolStripMenuItemForegroundColor";
-			this.ToolStripMenuItemForegroundColor.Size = new System.Drawing.Size(180, 22);
-			this.ToolStripMenuItemForegroundColor.Text = "Foreground color";
+			this.toolStripMenuItemForegroundColor.CheckOnClick = true;
+			this.toolStripMenuItemForegroundColor.Name = "toolStripMenuItemForegroundColor";
+			this.toolStripMenuItemForegroundColor.Size = new System.Drawing.Size(180, 22);
+			this.toolStripMenuItemForegroundColor.Text = "Foreground color";
+			this.toolStripMenuItemForegroundColor.Click += new System.EventHandler(this.ToolStripMenuItemForegroundColor_Click);
 			// 
 			// toolStripSeparator3
 			// 
@@ -199,6 +211,7 @@
 			this.ToolStripMenuItemExit.Name = "ToolStripMenuItemExit";
 			this.ToolStripMenuItemExit.Size = new System.Drawing.Size(209, 22);
 			this.ToolStripMenuItemExit.Text = "Exit";
+			this.ToolStripMenuItemExit.Click += new System.EventHandler(this.ToolStripMenuItemExit_Click);
 			// 
 			// timer
 			// 
@@ -245,14 +258,6 @@
 			this.notifyIcon.Text = "notifyIcon";
 			this.notifyIcon.Visible = true;
 			// 
-			// snowToolStripMenuItem
-			// 
-			this.snowToolStripMenuItem.CheckOnClick = true;
-			this.snowToolStripMenuItem.Name = "snowToolStripMenuItem";
-			this.snowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.snowToolStripMenuItem.Text = "Terminator";
-			this.snowToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,8 +294,8 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemChooseFont;
 		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemColors;
-		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemBackgroundColor;
-		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemForegroundColor;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBackgroundColor;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemForegroundColor;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		public System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemLoadOnWindowsStartup;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;

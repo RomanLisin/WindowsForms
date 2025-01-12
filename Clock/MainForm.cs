@@ -10,7 +10,7 @@ namespace Clock
 	public partial class MainForm : Form
 	{
 		private PrivateFontCollection fontCollection = new PrivateFontCollection();
-		Font currentFont, customFont;
+		//Font currentFont, customFont;
 		private FontFamily defaultFontFamily; // для хранения шрифта по умолчанию при загрузке
 		public MainForm()
 		{
@@ -19,7 +19,7 @@ namespace Clock
 			this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width, 50);
 			ToolStripMenuItemShowControls.Checked = true;
 			
-			currentFont = this.Font;
+			//currentFont = this.Font;
 		}
 		void SetVisibility(bool visible)
 		{
@@ -149,9 +149,10 @@ namespace Clock
 		{
 			bool anyChecked = false;
 			// проверяем, выбран ли какой-либо пункт меню
-			foreach (ToolStripItem item in defaultItem.Owner.Items)
+			foreach (ToolStripItem item in defaultItem.Owner.Items)  // цикл по всем элементам в коллекции Items родительского элемента меню (Owner.Items), которая представляет собой коллекцию всех пунктов меню.
+			// defaultItem.Owner - это контейнер, которому принадлежит defaultItem, и в котором находятся все элементы меню
 			{
-				if (item is ToolStripMenuItem menuItem && menuItem.Checked)
+				if (item is ToolStripMenuItem menuItem && menuItem.Checked) // чтобы проверить свойство Checked, сначала проверяем на тип, у которого имеется это свойство (не все  элементы коллекции обладают этим свойством, поэтому нужна первая проверка)
 				{
 					anyChecked = true;
 					break;
@@ -174,13 +175,9 @@ namespace Clock
 		{
 			try
 			{
-				//MessageBox("Загружен  шрифт по умолчанию",);
 				AddFontToCollectionByAllocMem(Properties.Resources.Light);
-				//Console.WriteLine("Загружен  шрифт digital_7");
 				AddFontToCollectionByAllocMem(Properties.Resources.MOSCOW2024);
-				//Console.WriteLine("Загружен  шрифт MOSCOW2024");
 				AddFontToCollectionByAllocMem(Properties.Resources.Terminator);
-				//Console.WriteLine("Загружен  шрифт terminat");
 				defaultFontFamily = this.Font.FontFamily;
 				//AddFontToCollectionByAllocMem(Properties.Resources.DefaultFont);
 			}
@@ -206,6 +203,11 @@ namespace Clock
 				throw new Exception("Fonts didn't load");
 			}
 			return fontCollection.Families[fontCollection.Families.Length-1];  // возвращаем последний в коллекции шрифт
+		}
+
+		private void ToolStripMenuItemExit_Click(object sender, EventArgs e)
+		{
+			this.Close();
 		}
 
 		// метод для загрузки шрифта из ресурсов с использованием временного файла
@@ -248,6 +250,16 @@ namespace Clock
 			{
 				ApplyFontToControl(child, fontFamily);
 			}
+		}
+
+		private void ToolStripMenuItemBackgroundColor_Click(object sender, EventArgs e)
+		{
+			this.BackColor = labelTime.BackColor = buttonHideControls.BackColor = toolStripMenuItemBackgroundColor.Checked ? Color.DarkGreen : DefaultBackColor;
+		}
+
+		private void ToolStripMenuItemForegroundColor_Click(object sender, EventArgs e)
+		{
+			this.ForeColor = toolStripMenuItemForegroundColor.Checked ? Color.Silver : DefaultForeColor;
 		}
 	}
 }
