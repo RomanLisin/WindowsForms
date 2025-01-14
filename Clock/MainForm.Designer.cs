@@ -30,7 +30,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-			this.labelTime = new System.Windows.Forms.Label();
+			this.labelTime = new DoubleBufferedControl(); //System.Windows.Forms.Label();
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.ToolStripMenuItemTopmost = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStripMenuItemShowControls = new System.Windows.Forms.ToolStripMenuItem();

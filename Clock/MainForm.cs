@@ -4,6 +4,8 @@ using System.Drawing.Text;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Reflection;
+
 
 namespace Clock
 {
@@ -16,9 +18,10 @@ namespace Clock
 		{
 			InitializeComponent();
 			labelTime.BackColor = Color.AliceBlue;
+			
 			this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width, 50);
 			ToolStripMenuItemShowControls.Checked = true;
-			
+
 			//currentFont = this.Font;
 		}
 		void SetVisibility(bool visible)
@@ -96,11 +99,6 @@ namespace Clock
 		{
 			this.TopMost = !this.TopMost;
 		}
-
-		//private void labelTime_FontChanged(object sender, EventArgs e)
-		//{
-		//	labelTime.Font = new System.Drawing.Font(labelTime.Font.FontFamily, 32, FontStyle.Regular);
-		//}
 
 		// метод обработчик кликов по пунктам меню
 		private void ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -260,6 +258,20 @@ namespace Clock
 		private void ToolStripMenuItemForegroundColor_Click(object sender, EventArgs e)
 		{
 			this.ForeColor = toolStripMenuItemForegroundColor.Checked ? Color.Silver : DefaultForeColor;
+		}
+	}
+	public class DoubleBufferedControl : Label
+	{
+		public DoubleBufferedControl()
+		{
+			EnableDoubleBuffering();
+		}
+		public void EnableDoubleBuffering()
+		{
+			this.SetStyle(ControlStyles.OptimizedDoubleBuffer |
+						ControlStyles.UserPaint |
+						ControlStyles.AllPaintingInWmPaint, true);
+			this.UpdateStyles();
 		}
 	}
 }
